@@ -1,3 +1,4 @@
+from django.views.generic.base import TemplateView
 from django.shortcuts import redirect, render
 from analytics.models import LinkAudit
 
@@ -25,3 +26,23 @@ def redirect_short_url(request, url):
     increase_hit_by_one(link_audit_obj)
 
     return redirect(link_obj.original_url)
+
+
+class HomeView(TemplateView):
+    template_name = "link/home.html"
+
+
+class AboutView(TemplateView):
+    template_name = "link/about.html"
+
+
+class CreateView(TemplateView):
+    template_name = "link/create.html"
+
+
+class FAQView(TemplateView):
+    template_name = "link/faq.html"
+
+
+class AccountView(TemplateView):
+    template_name = "link/account.html"

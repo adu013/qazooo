@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QAZOOO</title>
+
+    <style>
+        body {
+            font-family: 'Trebuchet MS', sans-serif;
+        }
+        .navbar {
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+            background-color: #333;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .navbar a:hover {
+            background: #f1f1f1;
+            color: black;
+        }
+
+        .main {
+            padding: 16px;
+            margin-bottom: 30px;
+        }
+    </style>
+    {% block head %} {% endblock %}
+</head>
+<body style="background-color: #a47149;">
+    {% block header %}
+    <div style="font-size: 25px; text-align: center;">
+        QAZOOO
+    </div>
+    {% endblock%}
+    {% block body %}{% endblock %}
+
+    <div class="navbar">
+        <a href="/" class="active">Home</a>
+        <a href="/about">About</a>
+        <a href="/create">+</a>
+        <a href="/faq">FAQ</a>
+        <a href="/account">My Account</a>
+      </div>
+</body>
+</html>
