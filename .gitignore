@@ -173,5 +173,6 @@ django_fe/static/.DS_Store
 # Local DB
 db.sqlite3
 
-# Local staticfiles
+# Local staticfiles & mediafiles
 static
+media
