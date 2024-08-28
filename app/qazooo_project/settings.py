@@ -25,7 +25,11 @@ SECRET_KEY = "django-insecure-afse%yk&+b46twp^sv!z3*s&%x#q04qr1p)zqb+!m^d0w#vt$c
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "http://localhost:8000",
+    "htts://qaz.ooo",
+    "https://qaz.ooo",
+]
 
 MAIN_HOST = "https://qaz.ooo/"
 
