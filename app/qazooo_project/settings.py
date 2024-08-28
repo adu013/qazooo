@@ -43,7 +43,9 @@ THIRD_PARTY_APPS = [
     "accounts",
 ]
 
-CUSTOM_APPS = []
+CUSTOM_APPS = [
+    "links.apps.LinksConfig",
+]
 
 INSTALLED_APPS = CORE_APPS + THIRD_PARTY_APPS + CUSTOM_APPS
 
