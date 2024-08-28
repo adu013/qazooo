@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,7 +27,7 @@ SECRET_KEY = "django-insecure-afse%yk&+b46twp^sv!z3*s&%x#q04qr1p)zqb+!m^d0w#vt$c
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "http://localhost:8000",
+    "localhost",
     "htts://qaz.ooo",
     "https://qaz.ooo",
 ]
@@ -134,6 +135,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = "static/"
+
+MEDIA_URL = "media/"
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

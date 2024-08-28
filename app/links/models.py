@@ -12,6 +12,8 @@ class Link(common_models.DateStampedModel):
     original_url = models.URLField(max_length=1000, blank=False, null=False)
     short_url = models.CharField(max_length=50)
 
+    qr_img = models.ImageField(default=None, blank=True, null=True)
+
     def __str__(self) -> str:
         if len(self.original_url) > 25:
             return f"{self.original_url[:21]} ..."
