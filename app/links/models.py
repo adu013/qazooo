@@ -14,6 +14,15 @@ class Link(common_models.DateStampedModel):
 
     qr_img = models.ImageField(default=None, blank=True, null=True)
 
+    link_audit = models.OneToOneField(
+        "analytics.LinkAudit",
+        blank=True,
+        default=None,
+        null=True,
+        on_delete=models.CASCADE,
+        related_name="link"
+    )
+
     def __str__(self) -> str:
         if len(self.original_url) > 25:
             return f"{self.original_url[:21]} ..."
