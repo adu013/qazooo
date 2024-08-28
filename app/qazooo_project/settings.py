@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+MAIN_HOST = "https://qaz.ooo/"
 
 # Application definition
 
