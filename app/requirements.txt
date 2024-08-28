@@ -14,8 +14,11 @@ prompt_toolkit==3.0.47
 ptyprocess==0.7.0
 pure_eval==0.2.3
 Pygments==2.18.0
+pypng==0.20220715.0
+qrcode==7.4.2
 six==1.16.0
 sqlparse==0.5.1
 stack-data==0.6.3
 traitlets==5.14.3
+typing_extensions==4.12.2
 wcwidth==0.2.13
