@@ -83,13 +83,13 @@ def create_short_url_view(request):
             limit += 1
 
         # Save
-        Link.objects.create(
+        link = Link.objects.create(
             created_by=request.user,
             original_url=data,
             short_url=short_url
         )
 
-        return redirect(reverse_lazy("dashboard"))
+        return redirect(reverse_lazy("link_detail", kwargs={'pk':link.pk}))
     else:
         return render(request, "link/create.html")
 
