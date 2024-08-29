@@ -2,10 +2,14 @@
 
 {% block body %}
 <div class="container" style="margin-top: 5rem; text-align: center;">
-    <h2>No Name</h2>
+    <!-- <h2>No Name</h2> -->
     <h4>{{link.original_url}}</h4>
     <h4>https://qaz.ooo/{{link.short_url}}</h4>
 
     <img src="/media/{{link.qr_img}}" alt="">
+    <div class="mt-1">
+        <a href="/media/{{link.qr_img}}" download="{{link.short_url}}.png">Download</a>
+    </div>
+
 </div>
 {% endblock %}
