@@ -54,7 +54,11 @@
     {% block body %}{% endblock %}
 
     <div class="navbar">
-        <a href="/" class="active">Home</a>
+        {% if user.is_authenticated %}
+            <a href="/" class="active">Dashboard</a>
+        {% else %}
+            <a href="/" class="active">Home</a>
+        {% endif %}
         <a href="/about">About</a>
         <a href="/create">+</a>
         <a href="/faq">FAQ</a>

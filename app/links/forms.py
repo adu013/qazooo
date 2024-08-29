@@ -1,15 +1,19 @@
-from django.contrib.auth.forms import UserCreationForm
+from typing import Any
+from django import forms
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
-class CustomSignUpForm(UserCreationForm):
+class CustomSignUpForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
 
     class Meta:
         model = User
         fields = [
-            "username",
             "email",
             "password",
-            "password2",
         ]
+
+    def clean(self):
+        cleaned_data =  super().clean()
+        return cleaned_data

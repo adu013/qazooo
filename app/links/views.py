@@ -1,5 +1,7 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import CreateView, TemplateView
+from django.db.models.query import QuerySet
+from django.views.generic import CreateView, TemplateView, ListView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, render
 
@@ -9,6 +11,7 @@ from .forms import CustomSignUpForm
 from .models import Link
 from .utils import increase_hit_by_one
 
+User = get_user_model()
 
 def redirect_short_url(request, url):
     link_queryset = Link.objects.filter(short_url=url)
@@ -32,6 +35,21 @@ def redirect_short_url(request, url):
     return redirect(link_obj.original_url)
 
 
+def signup_view(request):
+    if request.method == "POST":
+        form = CustomSignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.username = form.cleaned_data["email"]
+            user.set_password(form.cleaned_data["password"])
+            user.save()
+            return redirect("login")
+    else:
+        form = CustomSignUpForm()
+
+    return render(request, "registration/signup.html", {"form": form})
+
+
 class HomeView(TemplateView):
     template_name = "link/home.html"
 
@@ -40,7 +58,7 @@ class AboutView(TemplateView):
     template_name = "link/about.html"
 
 
-class CreateView(TemplateView):
+class CreateView(LoginRequiredMixin, TemplateView):
     template_name = "link/create.html"
 
 
@@ -56,11 +74,10 @@ class ComapreView(TemplateView):
     template_name = "link/compare.html"
 
 
-class DashboardView(LoginRequiredMixin, TemplateView):
+class DashboardView(LoginRequiredMixin, ListView):
+    model = Link
+    context_object_name = "links"
     template_name = "link/dashboard.html"
 
-
-class SignUpView(CreateView):
-    form_class = CustomSignUpForm
-    success_url = reverse_lazy("login")
-    template_name = "registration/signup.html"
+    def get_queryset(self):
+        return Link.objects.filter(created_by=self.request.user)

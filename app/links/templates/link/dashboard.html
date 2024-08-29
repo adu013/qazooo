@@ -1,5 +1,19 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<p>Dashboard</p>
+<div class="container">
+    <h2>My Links</h2>
+
+    {% for link in links %}
+    <div class="card mt-1">
+        <div class="card-header">
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">Short URL: <a href="{% url 'redirect_short_url' url=link.short_url %}">qaz.ooo/{{ link.short_url }}</a></h4>
+            <h5 class="card-text">For link: {{ link.original_url }}</h5>
+            <a href="#" class="btn btn-primary">View Analytics</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}
