@@ -101,11 +101,6 @@ class HomeView(TemplateView):
 class AboutView(TemplateView):
     template_name = "link/about.html"
 
-
-class CreateView(LoginRequiredMixin, CreateView):
-    template_name = "link/create.html"
-
-
 class FAQView(TemplateView):
     template_name = "link/faq.html"
 
