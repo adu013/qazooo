@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 
+PROD = os.environ.get('LOCAL_DJANGO_PROJECT_QAZOOO', False)
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,16 +23,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-afse%yk&+b46twp^sv!z3*s&%x#q04qr1p)zqb+!m^d0w#vt$c"
+if PROD:
+    pass
+
+else:
+    SECRET_KEY = "django-insecure-afse%yk&+b46twp^sv!z3*s&%x#q04qr1p)zqb+!m^d0w#vt$c"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    "localhost",
-    "htts://qaz.ooo",
-    "https://qaz.ooo",
-]
+if PROD:
+    ALLOWED_HOSTS = [
+        "https://qaz.ooo",
+    ]
+else:
+    ALLOWED_HOSTS = [
+        "localhost",
+    ]
 
 MAIN_HOST = "https://qaz.ooo/"
 
@@ -101,12 +110,16 @@ LOGOUT_REDIRECT_URL = "/"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+if PROD:
+    pass
+
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
     }
-}
 
 
 # Password validation
@@ -153,3 +166,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Email settings
+if PROD:
+    DEFAULT_FROM_EMAIL = ""
+    EMAIL_USE_TLS = True
+    EMAIL_HOST = ""
+    EMAIL_PORT = 0
+    EMAIL_HOST_USER = ""
+    EMAIL_HOST_PASSWORD = ""
