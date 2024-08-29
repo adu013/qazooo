@@ -11,7 +11,8 @@
         <div class="card-body">
             <h4 class="card-title">Short URL: <a href="{% url 'redirect_short_url' url=link.short_url %}">qaz.ooo/{{ link.short_url }}</a></h4>
             <h5 class="card-text">For link: {{ link.original_url }}</h5>
-            <a href="#" class="btn btn-primary">View Analytics</a>
+            <a href="#" class="btn btn-primary">Analytics</a>
+            <a href="{% url 'link_detail' pk=link.pk %}" class="btn btn-secondary">QR</a>
             <a href="{% url 'delete_link' pk=link.pk %}" class="btn btn-danger">Delete</a>
         </div>
     </div>
