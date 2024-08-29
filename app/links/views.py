@@ -1,9 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView
+from django.views.generic import CreateView, TemplateView
+from django.urls import reverse_lazy
 from django.shortcuts import redirect, render
 
 from analytics.models import LinkAudit
 
+from .forms import CustomSignUpForm
 from .models import Link
 from .utils import increase_hit_by_one
 
@@ -48,3 +50,17 @@ class FAQView(TemplateView):
 
 class AccountView(LoginRequiredMixin, TemplateView):
     template_name = "link/account.html"
+
+
+class ComapreView(TemplateView):
+    template_name = "link/compare.html"
+
+
+class DashboardView(LoginRequiredMixin, TemplateView):
+    template_name = "link/dashboard.html"
+
+
+class SignUpView(CreateView):
+    form_class = CustomSignUpForm
+    success_url = reverse_lazy("login")
+    template_name = "registration/signup.html"

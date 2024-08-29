@@ -95,7 +95,8 @@ AUTH_USER_MODEL = "accounts.CustomUser"
 
 # Auth URLS
 LOGIN_URL = "/account/login/"
-LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "/dashboard"
+LOGOUT_REDIRECT_URL = "/"
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases

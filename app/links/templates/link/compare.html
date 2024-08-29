@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<table class="comparison-table">
+    <h2>Comaprision of free services:</h2>
+    <thead>
+        <tr>
+            <th>Courses</th>
+            <th>QAZOOO</th>
+            <th>Bitly</th>
+            <th>TinyURL</th>
+            <th>QR.io</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="product-name">Free links</td>
+            <td>25</td>
+            <td>100</td>
+            <td>100</td>
+            <td>0</td>
+        </tr>
+
+        <tr>
+            <td class="product-name">Free links with analytics</td>
+            <td>25</td>
+            <td>0</td>
+            <td>0</td>
+            <td>NA</td>
+        </tr>
+
+        <tr>
+            <td class="product-name">Free QRs for the links</td>
+            <td>Yes</td>
+            <td>2 only</td>
+            <td>Yes</td>
+            <td>NA</td>
+        </tr>
+    </tbody>
+</table>
+
+{% endblock %}

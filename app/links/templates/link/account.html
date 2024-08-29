@@ -1,5 +1,20 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<p>Account</p>
+<div class="container">
+    <h2>Settings</h2>
+
+    <div style="font-size: 18px; text-align: center; margin-top: 5rem;">
+        <p>Email: {{ user.email }}</p>
+
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Log Out</button>
+        </form>
+    </div>
+
+    <div style="font-size: 16px; text-align: right; margin-top: 25rem;">
+        <a href="#" style="color: red;">Delete Account</a>
+    </div>
+</div>
 {% endblock %}

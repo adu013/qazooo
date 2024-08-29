@@ -7,4 +7,14 @@
 <div class="container" style="font-size: 150px; text-align: center;">
     QAZOOO
 </div>
+<div class="container" style="font-size: 50px; text-align: center;">
+    The finest URL shortening service for individuals.
+</div>
+<div class="container" style="font-size: 50px; text-align: center; margin-top: 5rem;">
+    {% if user.is_authenticated %}
+        <a href="{% url 'dashboard' %}" class="btn btn-primary" style="padding: 1rem 4rem;">Go to Dashboard</a>
+    {% else %}
+        <a href="{% url 'dashboard' %}"class="btn btn-primary" style="padding: 1rem 4rem;">Get Started</a>
+    {% endif %}
+</div>
 {% endblock %}
