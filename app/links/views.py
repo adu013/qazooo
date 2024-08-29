@@ -6,10 +6,11 @@ from django.urls import reverse_lazy
 from django.shortcuts import redirect, render
 
 from analytics.models import LinkAudit
+from common.utils import get_encoded_str
 
 from .forms import CustomSignUpForm
 from .models import Link
-from .utils import increase_hit_by_one
+from .utils import increase_hit_by_one, is_url_safe, is_unique_short_url
 
 User = get_user_model()
 
@@ -50,6 +51,49 @@ def signup_view(request):
     return render(request, "registration/signup.html", {"form": form})
 
 
+def create_short_url_view(request):
+    if request.method == "POST":
+        context = {}
+        # Get data from POST request
+        data = request.POST.get("link")
+
+        # Validation
+        if not is_url_safe(data):
+            context = {
+                "error": "Please enter a valid URL. \
+                URL must starts with either http:// or https://"
+            }
+            return render(request, "link/create.html", context)
+
+        if not data.startswith(('http://', 'https://')):
+            context = {
+                "error": "URL must starts with either http:// or https://"
+            }
+            return render(request, "link/create.html", context)
+
+        # Create short URL
+        short_url = get_encoded_str(data, start_position=0, length=8)
+
+        # Validate Short URL
+        # Keep creating until calidation is successful
+        # limit = 25 times
+        limit = 0
+        while not is_unique_short_url(short_url) and limit < 25:
+            short_url = get_encoded_str(data, start_position=0, length=8)
+            limit += 1
+
+        # Save
+        Link.objects.create(
+            created_by=request.user,
+            original_url=data,
+            short_url=short_url
+        )
+
+        return redirect(reverse_lazy("dashboard"))
+    else:
+        return render(request, "link/create.html")
+
+
 class HomeView(TemplateView):
     template_name = "link/home.html"
 
@@ -58,7 +102,7 @@ class AboutView(TemplateView):
     template_name = "link/about.html"
 
 
-class CreateView(LoginRequiredMixin, TemplateView):
+class CreateView(LoginRequiredMixin, CreateView):
     template_name = "link/create.html"
 
 

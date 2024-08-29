@@ -2,13 +2,20 @@
 
 {% block body %}
 <div class="container">
-    <form style="margin-top: 15rem;">
+    <form method="post" style="margin-top: 15rem;" >
+        {% csrf_token %}
         <div class="form-group">
-          <input type="link" class="form-control" id="link-input" placeholder="Enter your link">
+          <input type="text" class="form-control" id="link" name="link" placeholder="Enter your link">
         </div>
 
+        {% if error %}
+        <div class="form-group text-danger" style="margin-top: 1rem; text-align: center;">
+            {{error}}
+        </div>
+        {% endif %}
+
         <div class="form-group" style="margin-top: 1rem; text-align: center;">
-            <button type="submit" class="btn btn-primary">Create Short Link</button>
+            <button type="submit" class="btn btn-primary">Create Short URL</button>
         </div>
       </form>
 
