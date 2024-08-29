@@ -41,7 +41,7 @@ class Link(common_models.DateStampedModel):
         host = settings.MAIN_HOST
         full_url = host + self.short_url
         qr_image = qrcode.make(full_url)
-        qr_offset = Image.new('RGB', (310, 310), 'white')
+        qr_offset = Image.new('RGB', (325, 325), 'white')
         qr_offset.paste(qr_image)
         file_name = f"{self.short_url}-qr.png"
         stream = BytesIO()
