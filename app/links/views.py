@@ -121,6 +121,16 @@ class DashboardView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return Link.objects.filter(created_by=self.request.user)
 
+
+class LinkDetailView(LoginRequiredMixin, DetailView):
+    model = Link
+    template_name = "link/link_detail.html"
+
+    def get_queryset(self):
+        queryset = Link.objects.filter(created_by=self.request.user)
+        return queryset
+
+
 class LinkDeleteView(LoginRequiredMixin, DetailView):
 
     model = Link
