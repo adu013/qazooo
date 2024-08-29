@@ -10,6 +10,9 @@
         body {
             font-family: 'Trebuchet MS', sans-serif;
         }
+        .content {
+            margin-bottom: 65px;
+        }
         .navbar {
             display: flex;
             justify-content: center;
@@ -25,7 +28,7 @@
             display: block;
             color: #f2f2f2;
             text-align: center;
-            padding: 14px 16px;
+            padding: 6px 16px;
             text-decoration: none;
             font-size: 17px;
         }
@@ -51,7 +54,11 @@
         The finest URL shortening service for individuals.
     </div>
     {% endblock%}
-    {% block body %}{% endblock %}
+
+    <div class="content">
+        {% block body %}{% endblock %}
+    </div>
+
 
     <div class="navbar">
         {% if user.is_authenticated %}
