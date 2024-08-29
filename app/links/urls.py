@@ -4,7 +4,7 @@ from django.urls import include, path
 
 from .views import (
     create_short_url_view, redirect_short_url, signup_view,  AboutView, AccountView, ComapreView, CreateView,
-    DashboardView, FAQView, HomeView,)
+    DashboardView, FAQView, HomeView, LinkDeleteView)
 
 urlpatterns = [
     path("", HomeView.as_view(), name="home"),
@@ -16,6 +16,7 @@ urlpatterns = [
     path("create", create_short_url_view, name="create"),
     path("dashboard", DashboardView.as_view(), name="dashboard"),
     path("faq", FAQView.as_view(), name="faq"),
+    path("link/<int:pk>/delete", LinkDeleteView.as_view(), name="delete_link"),
     path("<str:url>", redirect_short_url, name="redirect_short_url"),
 ]
 

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <div>Are you sure you want to delete action {{ object.name}}?</div>
+    <div>All the activities of this action will be deleted.</div>
+
+    <div class="link">
+        <p>
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="post" value="yes">
+                <input type="submit" class="btn btn-danger" value="Yes, delete">
+
+                <a class="btn btn-secondary" href="{% url 'dashboard' %}">
+                    No, take me back
+                </a>
+            </form>
+        </p>
+    </div>
+</div>
+{% endblock %}

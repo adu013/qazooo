@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models.query import QuerySet
-from django.views.generic import CreateView, TemplateView, ListView
+from django.views.generic import CreateView, TemplateView, ListView, DetailView
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, render
 
@@ -120,3 +120,17 @@ class DashboardView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Link.objects.filter(created_by=self.request.user)
+
+class LinkDeleteView(LoginRequiredMixin, DetailView):
+
+    model = Link
+    template_name = "link/delete_link.html"
+
+    def get_queryset(self):
+        queryset = Link.objects.filter(created_by=self.request.user)
+        return queryset
+
+    def post(self, request, *args, **kwargs):
+        obj = self.get_object()
+        obj.delete()
+        return redirect(reverse_lazy('dashboard'))
