@@ -1,3 +1,5 @@
+import random
+
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models.query import QuerySet
@@ -72,7 +74,10 @@ def create_short_url_view(request):
             return render(request, "link/create.html", context)
 
         # Create short URL
-        short_url = get_encoded_str(data, start_position=0, length=8)
+        start_position = random.randint(0,15)
+        short_url = get_encoded_str(
+            data, start_position=start_position, length=8
+        )
 
         # Validate Short URL
         # Keep creating until calidation is successful
