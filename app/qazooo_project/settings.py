@@ -60,6 +60,7 @@ INSTALLED_APPS = CORE_APPS + THIRD_PARTY_APPS + CUSTOM_APPS
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -91,6 +92,10 @@ WSGI_APPLICATION = "qazooo_project.wsgi.application"
 
 # Authnetication
 AUTH_USER_MODEL = "accounts.CustomUser"
+
+# Auth URLS
+LOGIN_URL = "/account/login/"
+LOGIN_REDIRECT_URL = "/"
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases

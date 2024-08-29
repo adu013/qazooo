@@ -1,5 +1,7 @@
-from django.views.generic.base import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView
 from django.shortcuts import redirect, render
+
 from analytics.models import LinkAudit
 
 from .models import Link
@@ -44,5 +46,5 @@ class FAQView(TemplateView):
     template_name = "link/faq.html"
 
 
-class AccountView(TemplateView):
+class AccountView(LoginRequiredMixin, TemplateView):
     template_name = "link/account.html"
