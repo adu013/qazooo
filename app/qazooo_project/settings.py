@@ -30,7 +30,7 @@ if PROD == "True":
     DEBUG = False
 
     ALLOWED_HOSTS = [
-        "https://qaz.ooo",
+        "*",
     ]
 else:
     # SECURITY WARNING: keep the secret key used in production secret!
