@@ -1,6 +1,7 @@
 import random
 
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models.query import QuerySet
 from django.views.generic import CreateView, TemplateView, ListView, DetailView
@@ -53,6 +54,7 @@ def signup_view(request):
     return render(request, "registration/signup.html", {"form": form})
 
 
+@login_required
 def create_short_url_view(request):
     if request.method == "POST":
         context = {}
