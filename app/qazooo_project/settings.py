@@ -43,7 +43,7 @@ else:
         "localhost",
     ]
 
-MAIN_HOST = "qaz.ooo/"
+MAIN_HOST = "http://qaz.ooo/"
 
 # Application definition
 
