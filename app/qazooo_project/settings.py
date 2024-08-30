@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
-if PROD:
+if PROD == "True":
     # SECURITY WARNING: keep the secret key used in production secret!
 
     # SECURITY WARNING: don't run with debug turned on in production!
@@ -111,7 +111,7 @@ LOGOUT_REDIRECT_URL = "/"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-if PROD:
+if PROD == "True":
     pass
 
 else:
@@ -169,7 +169,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Email settings
-if PROD:
+if PROD == "True":
     DEFAULT_FROM_EMAIL = ""
     EMAIL_USE_TLS = True
     EMAIL_HOST = ""
