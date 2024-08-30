@@ -98,6 +98,9 @@ def create_short_url_view(request):
 
         return redirect(reverse_lazy("link_detail", kwargs={'pk':link.pk}))
     else:
+        count = Link.objects.filter(created_by=request.user).count()
+        if count >= 25:
+            return render(request, "link/create_prohibitted.html")
         return render(request, "link/create.html")
 
 
