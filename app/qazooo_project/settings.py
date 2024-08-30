@@ -113,7 +113,16 @@ LOGOUT_REDIRECT_URL = "/"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 if PROD == "True":
-    pass
+    DATABASES = {
+    "default": {
+        "ENGINE": os.environ.get('ENGINE_NAME'),
+        "NAME": os.environ.get('DB_NAME'),
+        "USER": os.environ.get('DB_USERNAME'),
+        "PASSWORD": os.environ.get('DB_PASSWORD'),
+        "HOST": os.environ.get('DB_HOST'),
+        "PORT": os.environ.get('DB_PORT'),
+    }
+}
 
 else:
     DATABASES = {
